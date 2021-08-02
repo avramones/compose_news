@@ -8,7 +8,7 @@ class ApiClient {
     private val service = RetrofitClient.instance().create(ApiService::class.java)
 
     fun loadNews() = flow {
-        emit(service.loadNews(Constants.RU, Constants.API_KEY))
+        emit(service.loadNews(Constants.COUNTRY, Constants.API_KEY))
     }
 
 }

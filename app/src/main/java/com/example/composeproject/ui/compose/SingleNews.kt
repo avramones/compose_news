@@ -3,7 +3,9 @@ package com.example.composeproject.ui.compose
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -18,9 +20,10 @@ import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.composeproject.model.Article
 import com.example.composeproject.ui.vm.MainViewModel
+import com.example.composeproject.utils.Destination
 
 @Composable
-fun MainEvent(viewModel: MainViewModel, article: Article, navController: NavController) {
+fun SingleNews(viewModel: MainViewModel, article: Article, navController: NavController) {
 
     Card(
         shape = RoundedCornerShape(8.dp),
@@ -36,10 +39,9 @@ fun MainEvent(viewModel: MainViewModel, article: Article, navController: NavCont
         Row(modifier = Modifier
             .padding(all = 8.dp)
             .clickable {
-           //     isExpanded = !isExpanded
-                navController.navigate("details")
+                //     isExpanded = !isExpanded
+                navController.navigate(Destination.DETAIL)
                 viewModel.setArticle(article = article)
-
             }) {
             Image(
                 painter = rememberImagePainter(article.urlToImage),
@@ -50,7 +52,7 @@ fun MainEvent(viewModel: MainViewModel, article: Article, navController: NavCont
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.width(18.dp))
-            Column  {
+            Column {
                 Text(
                     text = article.title.toString(),
                     color = Color.Blue,
